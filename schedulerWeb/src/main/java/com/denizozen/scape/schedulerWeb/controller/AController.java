@@ -21,7 +21,7 @@ public abstract class AController {
 
 	public static final String STUDY_ADD_FORM = "add-study-form";
 	public static final String STUDY_EDIT_FORM = "edit-study-form";
-	public static final String STUDY_LIST = "list-of-members";
+	public static final String STUDY_LIST = "list-of-studies";
 	
 	@Autowired @Qualifier ("messageSource")
 	protected MessageSource labelSource;
