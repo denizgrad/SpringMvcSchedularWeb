@@ -2,13 +2,17 @@ package com.denizozen.scape.schedulerWeb.model;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * 
  * @author deniz.ozen
  *
  */
+@Entity
+@Table(name="rooms")
 public class Room extends AModel{
 	private String name;
 	

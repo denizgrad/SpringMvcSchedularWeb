@@ -4,9 +4,13 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.denizozen.scape.schedulerWeb.model.Doctor;
 import com.denizozen.scape.schedulerWeb.model.Study;
-
+@Service
+@Transactional
 public class StudyServiceImpl implements StudyService{
 	public void addStudy(Study study) {
 	}

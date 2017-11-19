@@ -2,14 +2,19 @@ package com.denizozen.scape.schedulerWeb.model;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  * 
  * @author deniz.ozen
  *
+ *
  */
+@Entity
+@Table(name="doctors")
 public class Doctor extends AModel{
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "doctors")
