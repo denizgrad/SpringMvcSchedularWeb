@@ -1,0 +1,104 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet author="deniz" id="1481228428151-1">
+		<createTable tableName="hibernate_sequence">
+			<column name="next_val" type="BIGINT(19)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-2">
+		<createTable tableName="doctors">
+			<column name="id" type="INT(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-3">
+		<createTable tableName="studies_doctors">
+			<column name="studies_id" type="INT(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="doctors_id" type="INT(10)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-4">
+		<createTable tableName="rooms">
+			<column name="id" type="INT(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-5">
+		<createTable tableName="patients">
+			<column name="id" type="INT(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-6">
+		<createTable tableName="studies">
+			<column name="id" type="INT(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(255)" />
+			<column name="description" type="VARCHAR(255)" />
+			<column name="room_id" type="INT(10)" />
+			<column name="patient_id" type="INT(10)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-7">
+		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="doctors" />
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-8">
+		<addPrimaryKey columnNames="studies_id, doctors_id" constraintName="PRIMARY" tableName="studies_doctors" />
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-9">
+		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="rooms" />
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-10">
+		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="patients" />
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-11">
+		<createIndex indexName="FK5i52bhmm0nbq6lrbur63anlmc" tableName="studies">
+			<column name="room_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-12">
+		<createIndex indexName="FK5i52bhmm0nbq6lrbur63anrty" tableName="studies">
+			<column name="patient_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-13">
+		<createIndex indexName="FKltwgxx90mecmtevf8038t64sh" tableName="studies_doctors">
+			<column name="doctors_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-12">
+		<addForeignKeyConstraint baseColumnNames="room_id" baseTableName="studies" constraintName="FK5i52bhmm0nbq6lrbur63anlmc" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="rooms" />
+	</changeSet>
+	<changeSet author="deniz" id="1481228428151-13">
+		<addForeignKeyConstraint baseColumnNames="patient_id" baseTableName="studies" constraintName="FK5i52bhmm0nbq6lrbur63anrty" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="patients" />
+	</changeSet>
+	<changeSet author="mehmetsinan.sahin" id="1481228428151-13">
+		<addForeignKeyConstraint baseColumnNames="doctors_id" baseTableName="studies_doctors" constraintName="FKltwgxx90mecmtevf8038t64sh" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="doctors" />
+	</changeSet>
+	<changeSet author="mehmetsinan.sahin" id="1481228428151-14">
+		<addForeignKeyConstraint baseColumnNames="studies_id" baseTableName="studies_doctors" constraintName="FKltwgxx90mecmtevf8038t64sh" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="studies" />
+	</changeSet>
+	<changeSet author="deniz" id="hib-seq-init">
+	    <insert tableName="hibernate_sequence">
+	        <column name="next_val" value="0" type="BIGINT(19)"/>
+	    </insert>	
+    </changeSet>
+</databaseChangeLog>

@@ -13,6 +13,7 @@ import com.denizozen.scape.schedulerWeb.constant.Sex;
 @Table(name="patients")
 public class Patient extends AModel{
 
+	public static final Object EMPTY = new Patient();
 	private String name;
 	@Enumerated
 	private Sex sex;

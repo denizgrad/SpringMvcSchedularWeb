@@ -24,7 +24,6 @@ import com.denizozen.scape.schedulerWeb.utility.Action;
 public class StudyController extends AController{
 	@Autowired
 	private StudyService studyService;
-	
 	@Autowired
 	private PatientService patientService;
 	@Autowired
@@ -50,17 +49,6 @@ public class StudyController extends AController{
 		return STUDY_ADD_FORM;
 	}
 	
-	private void addPatientListToModel(ModelMap modelMap) {
-		modelMap.addAttribute("patientList", patientService.getPatients());
-	}
-
-	private void addRoomListToModel(ModelMap modelMap) {
-		modelMap.addAttribute("roomList", roomService.getRooms());
-	}
-
-	private void addDoctorListToModel(ModelMap modelMap) {
-		modelMap.addAttribute("doctorList", doctorService.getDoctors());
-	}
 
 	@PostMapping (value="/add")
 	public String addingStudy(@Valid @ModelAttribute Study study, BindingResult bindingResult,
@@ -72,7 +60,7 @@ public class StudyController extends AController{
 		}
 		study.getDoctorIds().forEach(n -> study.getDoctors().add(doctorService.getDoctor(Integer.parseInt(n))));
 		studyService.addStudy(study);
-		String message = getMessage("msg.successful.add", getMessage("member"));
+		String message = getMessage("msg.successful.add", getMessage("study"));
 		modelMap.addAttribute("message", message);
 		modelMap.addAttribute("study", study);
 		return STUDY_ADD_FORM;
@@ -138,4 +126,16 @@ public class StudyController extends AController{
 		modelMap.addAttribute("description", getMessage("edit.study.desc"));
 	}
 
+
+	private void addPatientListToModel(ModelMap modelMap) {
+		modelMap.addAttribute("patientList", patientService.getPatients());
+	}
+
+	private void addRoomListToModel(ModelMap modelMap) {
+		modelMap.addAttribute("roomList", roomService.getRooms());
+	}
+
+	private void addDoctorListToModel(ModelMap modelMap) {
+		modelMap.addAttribute("doctorList", doctorService.getDoctors());
+	}
 }
