@@ -56,44 +56,47 @@
 	<changeSet author="deniz.ozen" id="1481228428151-7">
 		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="doctors" />
 	</changeSet>
-	<changeSet author="deniz.ozen" id="1481228428151-8">
-		<addPrimaryKey columnNames="studies_id, doctors_id" constraintName="PRIMARY" tableName="studies_doctors" />
+		<changeSet author="deniz.ozen" id="1481228428151-8">
+		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="studies" />
 	</changeSet>
 	<changeSet author="deniz.ozen" id="1481228428151-9">
-		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="rooms" />
+		<addPrimaryKey columnNames="studies_id, doctors_id" constraintName="PRIMARY" tableName="studies_doctors" />
 	</changeSet>
 	<changeSet author="deniz.ozen" id="1481228428151-10">
-		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="patients" />
+		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="rooms" />
 	</changeSet>
 	<changeSet author="deniz.ozen" id="1481228428151-11">
+		<addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="patients" />
+	</changeSet>
+	<changeSet author="deniz.ozen" id="1481228428151-12">
 		<createIndex indexName="FK5i52bhmm0nbq6lrbur63anlmc" tableName="studies">
 			<column name="room_id" />
 		</createIndex>
 	</changeSet>
-	<changeSet author="deniz.ozen" id="1481228428151-12">
+	<changeSet author="deniz.ozen" id="1481228428151-13">
 		<createIndex indexName="FK5i52bhmm0nbq6lrbur63anrty" tableName="studies">
 			<column name="patient_id" />
 		</createIndex>
 	</changeSet>
-	<changeSet author="deniz.ozen" id="1481228428151-13">
+	<changeSet author="deniz.ozen" id="1481228428151-14">
 		<createIndex indexName="FKltwgxx90mecmtevf8038t64sh" tableName="studies_doctors">
 			<column name="doctors_id" />
 		</createIndex>
 	</changeSet>
-	<changeSet author="deniz.ozen" id="1481228428151-14">
+	<changeSet author="deniz.ozen" id="1481228428151-15">
 		<addForeignKeyConstraint baseColumnNames="room_id" baseTableName="studies" constraintName="FK5i52bhmm0nbq6lrbur63anlmc" deferrable="false" initiallyDeferred="false"
 			onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="rooms" />
 	</changeSet>
-	<changeSet author="deniz.ozen" id="1481228428151-15">
+	<changeSet author="deniz.ozen" id="1481228428151-16">
 		<addForeignKeyConstraint baseColumnNames="patient_id" baseTableName="studies" constraintName="FK5i52bhmm0nbq6lrbur63anrty" deferrable="false" initiallyDeferred="false"
 			onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="patients" />
 	</changeSet>
-	<changeSet author="deniz.ozen" id="1481228428151-16">
+	<changeSet author="deniz.ozen" id="1481228428151-17">
 		<addForeignKeyConstraint baseColumnNames="doctors_id" baseTableName="studies_doctors" constraintName="FKltwgxx90mecmtevf8038t64sh" deferrable="false" initiallyDeferred="false"
 			onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="doctors" />
 	</changeSet>
-	<changeSet author="deniz.ozen" id="1481228428151-17">
-		<addForeignKeyConstraint baseColumnNames="studies_id" baseTableName="studies_doctors" constraintName="FKltwgxx90mecmtevf8038t64sh" deferrable="false" initiallyDeferred="false"
+	<changeSet author="deniz.ozen" id="1481228428151-18">
+		<addForeignKeyConstraint baseColumnNames="studies_id" baseTableName="studies_doctors" constraintName="FKohjo8eillw1g76rdbh6j7c2oo" deferrable="false" initiallyDeferred="false"
 			onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="studies" />
 	</changeSet>
 	<changeSet author="deniz.ozen" id="hib-seq-init">

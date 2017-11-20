@@ -11,7 +11,7 @@
 	<h1>${pageTitle}</h1>
 	<p>${description}</p>
 	
-	<form:form method="POST" commandName="member"
+	<form:form method="POST" commandName="study"
 		action="${contextPath}/study/add">
 		<div class="form-group">
 			<label for="name"><spring:message code="name"></spring:message></label> 
@@ -36,12 +36,11 @@
 		</div>		
 		
 		<div class="form-group">
-			<label for="doctor"><spring:message code="doctor"></spring:message></label> 
-			<form:select id="doctor" cssClass="form-control" path="doctorId" 
+			<label for="doctors"><spring:message code="doctors"></spring:message></label> 
+			<form:select id="doctor" cssClass="form-control" path="doctorIds" 
 				items="${doctorList}" itemLabel="name" itemValue="id" />
-			<form:errors path="doctor" cssClass="help-inline" />
+			<form:errors path="doctors" cssClass="help-inline" />
 		</div>	
-		
 		
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form:form>

@@ -4,32 +4,34 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags"%>
 
-<custom:layout title="List of members">
+<custom:layout title="List of Studies">
 
-	<h1>List of members</h1>
-	<p><spring:message code="list.member.desc"></spring:message> </p>
+	<h1>List of Studies</h1>
+	<p><spring:message code="list.study.desc"></spring:message> </p>
 	<table class="table">
 		<thead>
 			<tr>
 				<th width="10%">id</th>
 				<th width="70%">name</th>
-				<th width="70%">count of team</th>
+				<th width="70%">patient name</th>
+				<th width="70%">count of doctor</th>
 				<th width="20%">actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="member" items="${members}">
+			<c:forEach var="study" items="${studies}">
 				<tr>
-					<td>${member.id}</td>
-					<td>${member.name}</td>
-					<td>${member.teamCount}</td>
+					<td>${study.id}</td>
+					<td>${study.name}</td>
+					<td>${study.patient.name}</td>
+					<td>${study.doctorCount}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/member/edit/${member.id}.html"><spring:message code="edit"></spring:message></a><br /> 
-						<a href="${pageContext.request.contextPath}/member/delete/${member.id}.html"><spring:message code="delete"></spring:message></a><br />
+						<a href="${pageContext.request.contextPath}/study/edit/${study.id}.html"><spring:message code="edit"></spring:message></a><br /> 
+						<a href="${pageContext.request.contextPath}/study/delete/${study.id}.html"><spring:message code="delete"></spring:message></a><br />
 					</td>
 				</tr>
 			</c:forEach>
-			<c:if test="${empty members}">
+			<c:if test="${empty studies}">
 				<tr>
 					<td colspan="3">
 						<spring:message code="no.record.found"></spring:message>

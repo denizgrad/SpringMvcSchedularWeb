@@ -19,29 +19,20 @@
 				<li><a href="${contextPath}/"><spring:message code="home"></spring:message></a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<spring:message code="organizations"></spring:message> <span class="caret"></span>
+						<spring:message code="patients"></spring:message> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="${contextPath}/organization/add">${add}</a></li>
-						<li><a href="${contextPath}/organization/list">${list}</a></li>
+						<li><a href="${contextPath}/patient/add">${add}</a></li>
+						<li><a href="${contextPath}/patient/list">${list}</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<spring:message code="teams"></spring:message> <span class="caret"></span>
+						<spring:message code="studies"></spring:message> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="${contextPath}/team/add">${add}</a></li>
-						<li><a href="${contextPath}/team/list">${list}</a></li>
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<spring:message code="members"></spring:message> <span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="${contextPath}/member/add">${add}</a></li>
-						<li><a href="${contextPath}/member/list">${list}</a></li>
+						<li><a href="${contextPath}/study/add">${add}</a></li>
+						<li><a href="${contextPath}/study/list">${list}</a></li>
 					</ul>
 				</li>
 			</ul>

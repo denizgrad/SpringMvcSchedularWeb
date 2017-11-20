@@ -1,11 +1,12 @@
 package com.denizozen.scape.schedulerWeb.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.denizozen.scape.schedulerWeb.utility.Action;
 
-
+@Controller
 public class RootController extends AController {
 	@RequestMapping(value="/")
 	public ModelAndView mainPage() {
