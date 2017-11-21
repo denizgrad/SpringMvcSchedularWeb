@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <custom:layout title="${pageTitle}">
 
@@ -25,19 +26,31 @@
 		</div>
 		<div class="form-group">
 			<label for="startTime"><spring:message code="startTime"></spring:message></label> 
-			<form:input class="form-control" type="text" path="startTime" id="startTime"/>
+			<form:input class="form-control" type="datetime-local" path="startTime" id="startTime"/>
 			<form:errors path="startTime" cssClass="help-inline" />
 		</div>
+		
+		<div class="form-group">
+			<label for="endTime"><spring:message code="endTime"></spring:message></label> 
+			<form:input class="form-control" type="datetime-local" path="endTime" id="endTime"/>
+			<form:errors path="endTime" cssClass="help-inline" />
+		</div>
+		
 		<div class="form-group">
 			<label for="patient"><spring:message code="patient"></spring:message></label> 
 			<form:select id="patient" cssClass="form-control" path="patientId" 
 				items="${patientList}" itemLabel="name" itemValue="id" />
 			<form:errors path="patient" cssClass="help-inline" />
+		</div>	
+		<div class="form-group">
+			<label for="room"><spring:message code="room"></spring:message></label> 
+			<form:select id="patient" cssClass="form-control" path="roomId" 
+				items="${roomList}" itemLabel="name" itemValue="id" />
+			<form:errors path="room" cssClass="help-inline" />
 		</div>		
-		
 		<div class="form-group">
 			<label for="doctors"><spring:message code="doctors"></spring:message></label> 
-			<form:select id="doctor" cssClass="form-control" path="doctorIds" 
+			<form:select id="doctors" cssClass="form-control" path="doctorIds" 
 				items="${doctorList}" itemLabel="name" itemValue="id" />
 			<form:errors path="doctors" cssClass="help-inline" />
 		</div>	

@@ -16,7 +16,7 @@ public interface RoomService {
 	 * @throws NoResultException
 	 *             if member not exists with id
 	 */
-	public Study getRoom(int id);
+	public Room getRoom(int id);
 
 	public List<Room> getRooms();
 }

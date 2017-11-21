@@ -18,14 +18,17 @@
 			<form:input class="form-control" type="text" path="name" id="name"/>
 			<form:errors path="name" cssClass="help-inline" />
 			
-			<label for="sex"><spring:message code="sex"></spring:message></label> 
-			<form:input class="form-control" type="text" path="sex" id="sex"/>
-			<form:errors path="sex" cssClass="help-inline" />
-			
-			<label for="dayOfBirth"><spring:message code="dayOfBirth"></spring:message></label> 
-			<form:input class="form-control" type="text" path="dayOfBirth" id="dayOfBirth"/>
-			<form:errors path="dayOfBirth" cssClass="help-inline" />
-			
+			<div class="form-group">
+				<label for="sex"><spring:message code="sex"></spring:message></label> 
+				<form:select cssClass="form-control" path="sex" items="${sexList}" itemValue="shortName" itemLabel="fullName" />
+				<form:errors path="sex" cssClass="help-inline" />
+			</div>	
+		
+			<div class="form-group">
+				<label for="dayOfBirth"><spring:message code="dayOfBirth"></spring:message></label> 
+				<form:input class="form-control" type="date" path="dayOfBirth" id="dayOfBirth"/>
+				<form:errors path="dayOfBirth" cssClass="help-inline" />
+			</div>
 		</div>
 		
 		<button type="submit" class="btn btn-primary">Submit</button>

@@ -27,17 +27,11 @@
 		</div>
 		<div class="form-group">
 			<label for="doctors"><spring:message code="doctors"></spring:message></label>
-			<form:select id="patient" cssClass="form-control" path="doctorIds"
+			<form:select id="patient" cssClass="form-control" path="doctorId"
 				items="${doctorList}" itemLabel="name" itemValue="id" />
 			<form:errors path="teams" cssClass="help-inline" />
 		</div>
 		
-		<div class="form-group">
-			<label for="patient"><spring:message code="patient"></spring:message></label>
-			<form:select id="patient" cssClass="form-control" path="patientId"
-				items="${teamList}" itemLabel="name" itemValue="id" />
-			<form:errors path="teams" cssClass="help-inline" />
-		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form:form>
 </custom:layout>

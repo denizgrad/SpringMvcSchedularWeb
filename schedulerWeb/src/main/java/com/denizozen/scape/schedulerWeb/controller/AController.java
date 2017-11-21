@@ -1,14 +1,24 @@
 package com.denizozen.scape.schedulerWeb.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
+import com.denizozen.scape.schedulerWeb.constant.Sex;
+import com.denizozen.scape.schedulerWeb.constant.Status;
 import com.denizozen.scape.schedulerWeb.utility.Action;
+import com.denizozen.scape.schedulerWeb.utility.BaseUncheckedException;
+import com.denizozen.scape.schedulerWeb.utility.SexEnumConverter;
+import com.denizozen.scape.schedulerWeb.utility.StatusEnumConverter;
 
 
 public abstract class AController {
@@ -18,7 +28,8 @@ public abstract class AController {
 	
 	
 	public static final String PATIENT_ADD_FORM = "add-patient-form";
-
+	public static final String PATIENT_LIST = "list-of-patients";
+	
 	public static final String STUDY_ADD_FORM = "add-study-form";
 	public static final String STUDY_EDIT_FORM = "edit-study-form";
 	public static final String STUDY_LIST = "list-of-studies";
@@ -39,6 +50,10 @@ public abstract class AController {
 		return labelSource.getMessage(code, args, getUserLocale());
 	}
 	
+	
+	public String getMessage(BaseUncheckedException e, Object ...args) {
+		return getMessage(e.getLabelCode(), args);
+	}
 	/**
 	 * Helper method for getting user locale<br>
 	 * It can be used in controllers easily
@@ -69,4 +84,16 @@ public abstract class AController {
 	 * @return home action array for the domain subject
 	 */
 	protected abstract Action [] createHomeActions ();
+	
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+	    dateFormat.setLenient(true);
+	    webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+	    dateFormat2.setLenient(true);
+	    webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat2, true));
+	    webDataBinder.registerCustomEditor(Sex.class, new SexEnumConverter());
+	    webDataBinder.registerCustomEditor(Status.class, new StatusEnumConverter());
+	}
 }

@@ -2,46 +2,42 @@ package com.denizozen.scape.schedulerWeb.service;
 
 import java.util.List;
 
-import javax.persistence.NoResultException;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.denizozen.scape.schedulerWeb.model.Doctor;
+import com.denizozen.scape.schedulerWeb.dao.PatientDao;
 import com.denizozen.scape.schedulerWeb.model.Patient;
-import com.denizozen.scape.schedulerWeb.model.Study;
+import com.denizozen.scape.schedulerWeb.model.Room;
+import com.denizozen.scape.schedulerWeb.utility.PatientHasStudyException;
 @Service
 @Transactional
 public class PatientServiceImpl implements PatientService{
 
+	@Autowired
+	PatientDao patientDao;
+	
 	@Override
 	public void addPatient(Patient patient) {
-		// TODO Auto-generated method stub
-		
+		patientDao.addPatient(patient);
 	}
 
 	@Override
-	public void updatePatient(Patient patient) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Study getPatient(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Patient getPatient(int id) {
+		return patientDao.getPatient(id);
 	}
 
 	@Override
 	public void deletePatient(int id) {
-		// TODO Auto-generated method stub
-		
+		if (patientDao.hasAnyStudy (id)) {
+			throw new PatientHasStudyException(id);
+		}
+		patientDao.deletePatient(id);
 	}
 
 	@Override
 	public List<Patient> getPatients() {
-		// TODO Auto-generated method stub
-		return null;
+		return patientDao.getPatients();
 	}
 
 

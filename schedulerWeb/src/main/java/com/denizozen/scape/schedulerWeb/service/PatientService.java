@@ -11,8 +11,6 @@ public interface PatientService {
 
 	public void addPatient(Patient patient);
 
-	public void updatePatient(Patient patient);
-
 	/**
 	 * 
 	 * @param id
@@ -20,7 +18,7 @@ public interface PatientService {
 	 * @throws NoResultException
 	 *             if member not exists with id
 	 */
-	public Study getPatient(int id);
+	public Patient getPatient(int id);
 
 	public void deletePatient(int id);
 

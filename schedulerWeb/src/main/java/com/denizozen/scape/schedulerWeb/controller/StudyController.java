@@ -1,17 +1,24 @@
 package com.denizozen.scape.schedulerWeb.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.denizozen.scape.schedulerWeb.constant.Status;
 import com.denizozen.scape.schedulerWeb.model.Study;
 import com.denizozen.scape.schedulerWeb.service.DoctorService;
 import com.denizozen.scape.schedulerWeb.service.PatientService;
@@ -59,6 +66,7 @@ public class StudyController extends AController{
 			return STUDY_ADD_FORM;
 		}
 		study.getDoctorIds().forEach(n -> study.getDoctors().add(doctorService.getDoctor(Integer.parseInt(n))));
+		study.setStatus(Status.PLANNED);
 		studyService.addStudy(study);
 		String message = getMessage("msg.successful.add", getMessage("study"));
 		modelMap.addAttribute("message", message);
@@ -138,4 +146,5 @@ public class StudyController extends AController{
 	private void addDoctorListToModel(ModelMap modelMap) {
 		modelMap.addAttribute("doctorList", doctorService.getDoctors());
 	}
+	
 }
