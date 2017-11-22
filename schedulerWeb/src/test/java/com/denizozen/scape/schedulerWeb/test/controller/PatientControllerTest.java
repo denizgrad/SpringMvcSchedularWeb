@@ -73,6 +73,7 @@ public class PatientControllerTest {
 		List<Patient> list = patientService.getPatients();
 		Patient testPatient = new Patient("pat-name") ;
 		Assert.assertTrue(list.contains(testPatient));
+		clearPatients(list);
 	}
 	
 	@Test
@@ -119,6 +120,10 @@ public class PatientControllerTest {
 		Patient patient = new Patient(patName);
 		patientService.addPatient(patient);
 		return patient;
+	}
+	
+	private void clearPatients(List<Patient> list) {
+		list.forEach(n -> patientService.deletePatient(n.getId()));
 	}
 	
 }

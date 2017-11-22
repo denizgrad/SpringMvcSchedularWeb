@@ -47,6 +47,7 @@ public class StudyDaoTest {
 				String.class, 
 				study.getId());
 		Assert.assertEquals(studyName, STUDY_NAME);
+		dao.deleteStudy(study.getId());
 	}
 
 	@Test
@@ -67,6 +68,7 @@ public class StudyDaoTest {
 				studyId);
 
 		Assert.assertEquals(testName, actualStudyName);
+		dao.deleteStudy(studyToUpdate.getId());
 	}
 	
 	@Test

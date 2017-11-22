@@ -10,6 +10,8 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -66,10 +68,17 @@ public class StudyController extends AController{
 	public String addingStudy(@Valid @ModelAttribute Study study, BindingResult bindingResult,
 			ModelMap modelMap) {
 		addPageAttributesOfNew(modelMap);
+		if(study.getPatientId() == null) {
+			bindingResult.addError(new FieldError("study", "patientId",getMessage("null.patient")));
+		}
+		if(study.getDoctorIds().isEmpty()) {
+			bindingResult.addError(new FieldError("study", "doctorIds",getMessage("null.doctor")));
+		}
 		if (bindingResult.hasErrors()) {
 			addDoctorListToModel(modelMap);
 			addPatientListToModel(modelMap);
 			addRoomListToModel(modelMap);
+			addStatusListToModel(modelMap);
 			return STUDY_ADD_FORM;
 		}
 		study.getDoctorIds().forEach(n -> {
@@ -79,6 +88,7 @@ public class StudyController extends AController{
 		study.setRoom(roomService.getRoom(Integer.parseInt(study.getRoomId())));
 		study.setPatient(patientService.getPatient(Integer.parseInt(study.getPatientId())));
 		studyService.addStudy(study);
+		
 		String message = getMessage("msg.successful.add", getMessage("study"));
 		modelMap.addAttribute("message", message);
 		modelMap.addAttribute("studies", studyService.getStudies());

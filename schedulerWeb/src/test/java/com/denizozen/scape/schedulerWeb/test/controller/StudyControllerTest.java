@@ -115,6 +115,8 @@ public class StudyControllerTest {
             .andExpect(forwardedUrl("/WEB-INF/pages/edit-study-form.jsp"))
             .andExpect(model().attribute("study", study))
             .andExpect(model().attribute("study", hasProperty("doctors", hasSize(2))));
+		
+		studyService.deleteStudy(studyId);
 	}
 	
 	@Test
@@ -123,15 +125,18 @@ public class StudyControllerTest {
 		mockMvc.perform(post("/study/add")
 			.contentType(MediaType.APPLICATION_FORM_URLENCODED).params(getFormNoError(name)))
 				.andExpect(view().name(AController.STUDY_LIST))
-				//1 -> room , 2 -> patient
-				.andExpect(model().attribute("study", Matchers.hasProperty("id", Matchers.equalTo(3))));
+				.andExpect(model().attribute("study", Matchers.hasProperty("name", Matchers.equalTo(name))));
 		
 		List<Study> list = studyService.getStudies();
 		Study testStudy = new Study();
 		testStudy.setName(name);
 		Assert.assertTrue(list.contains(testStudy));
+		
+		clearStudies(list);
 	}
-	
+	private void clearStudies(List<Study> list) {
+		list.forEach(n -> studyService.deleteStudy(n.getId()));
+	}
 	@Test
 	public void testAddPostFail() throws Exception {
 		MultiValueMap<String, String> parts = new LinkedMultiValueMap<>();
@@ -159,6 +164,7 @@ public class StudyControllerTest {
 		
 		Study actual = studyService.getStudy(studyId);
 		Assert.assertEquals(updateName, actual.getName());
+		studyService.deleteStudy(studyId);
 	}
 	
 	@Test

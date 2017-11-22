@@ -157,12 +157,12 @@
 			<column name="name">Doctor Name 2</column>
 		</insert>
 	</changeSet>
-	<changeSet author="deniz.ozen" id="1481228428151-23">
+<!-- 	<changeSet author="deniz.ozen" id="1481228428151-23">
 		<insert tableName="patients">
 			<column name="id">1481240001</column>
-			<column name="name">Patient Name 2</column>
+			<column name="name">Patient Name 1</column>
 			<column name="sex">FEMALE</column>
 			<column name="dayOfBirth" valueDate="1992-01-01" />
 		</insert>
-	</changeSet>
+	</changeSet> -->
 </databaseChangeLog>

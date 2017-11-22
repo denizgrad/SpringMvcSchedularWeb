@@ -62,6 +62,7 @@ public class PatientDaoTest {
 				id);
 
 		Assert.assertEquals(patName, testOrgName);
+		dao.deletePatient(patient.getId());
 	}
 
 	@Test
@@ -71,6 +72,7 @@ public class PatientDaoTest {
 		dao.addPatient(patient);
 		Patient test = dao.getPatient(patient.getId());
 		Assert.assertEquals(test.getName(), PAT_NAME);
+		dao.deletePatient(patient.getId());
 	}
 
 	@Test
