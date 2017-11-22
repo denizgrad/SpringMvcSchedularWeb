@@ -189,6 +189,8 @@ public class StudyControllerTest {
 		roomService.addRoom(room);
 		Patient patient = new Patient("Patient1");
 		patientService.addPatient(patient);
+		Doctor doctor = new Doctor("Doctor1");
+		doctorService.addDoctor(doctor);
 		
 		MultiValueMap<String, String> parts = new LinkedMultiValueMap<>();
 		parts.add("name", name);
@@ -196,6 +198,7 @@ public class StudyControllerTest {
 		parts.add("startTime", "2009-12-15T12:12");
 		parts.add("roomId", room.getId().toString());
 		parts.add("patientId", patient.getId().toString());
+		parts.add("doctorIds", doctor.getId().toString());
 		
 		return parts;
 	}
