@@ -85,15 +85,5 @@ public abstract class AController {
 	 */
 	protected abstract Action [] createHomeActions ();
 	
-	@InitBinder
-	public void initBinder(WebDataBinder webDataBinder) {
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
-	    dateFormat.setLenient(true);
-	    webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-	    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
-	    dateFormat2.setLenient(true);
-	    webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat2, true));
-	    webDataBinder.registerCustomEditor(Sex.class, new SexEnumConverter());
-	    webDataBinder.registerCustomEditor(Status.class, new StatusEnumConverter());
-	}
+
 }

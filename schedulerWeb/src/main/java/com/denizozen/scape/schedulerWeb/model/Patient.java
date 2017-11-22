@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +24,7 @@ public class Patient extends AModel{
 	@NotNull
 	@Size (min=5, max=250)
 	private String name;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Sex sex;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")

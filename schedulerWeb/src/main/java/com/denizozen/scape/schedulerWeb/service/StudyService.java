@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
-import com.denizozen.scape.schedulerWeb.model.Doctor;
+import com.denizozen.scape.schedulerWeb.constant.Status;
 import com.denizozen.scape.schedulerWeb.model.Study;
 
 public interface StudyService {
@@ -18,12 +18,14 @@ public interface StudyService {
 	 * @param id
 	 * @return
 	 * @throws NoResultException
-	 *             if member not exists with id
+	 *             if study not exists with id
 	 */
 	public Study getStudy(int id);
 
 	public void deleteStudy(int id);
 
+	public void updateStatus(int studyId, Status status);
+	
 	public List<Study> getStudies();
 
 }

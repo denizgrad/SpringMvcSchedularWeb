@@ -14,7 +14,8 @@ public interface RoomService {
 	 * @param id
 	 * @return
 	 * @throws NoResultException
-	 *             if member not exists with id
+	 *             if room
+	 *              not exists with id
 	 */
 	public Room getRoom(int id);
 

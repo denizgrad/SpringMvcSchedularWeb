@@ -1,17 +1,25 @@
 package com.denizozen.scape.schedulerWeb.dao;
 
 import java.util.List;
+import java.util.Objects;
 
+import org.springframework.stereotype.Repository;
+
+import com.denizozen.scape.schedulerWeb.constant.Status;
 import com.denizozen.scape.schedulerWeb.model.Study;
+
 /**
  * 
  * @author deniz.ozen
  *
  */
-public class StudyDaoImpl extends BaseDao implements StudyDao{
+@Repository
+public class StudyDaoImpl extends BaseDao implements StudyDao {
 
 	@Override
 	public void addStudy(Study study) {
+		if (study.getStatus() == null)
+			study.setStatus(Status.PLANNED);
 		addModel(study);
 	}
 
@@ -19,9 +27,15 @@ public class StudyDaoImpl extends BaseDao implements StudyDao{
 	public void updateStudy(Study study) {
 		Study stuToUpdate = getStudy(study.getId());
 		stuToUpdate.setName(study.getName());
+		stuToUpdate.setStartTime(study.getStartTime());
+		stuToUpdate.setEndTime(study.getEndTime());
+		stuToUpdate.setDescription(study.getDescription());
 		stuToUpdate.setDoctors(study.getDoctors());
 		stuToUpdate.setRoom(study.getRoom());
 		stuToUpdate.setStatus(study.getStatus());
+		stuToUpdate.setDoctorIds(study.getDoctorIds());
+		stuToUpdate.setRoomId(study.getRoomId());
+		stuToUpdate.setPatientId(study.getPatientId());
 		updateModel(stuToUpdate);
 	}
 
@@ -38,6 +52,15 @@ public class StudyDaoImpl extends BaseDao implements StudyDao{
 	@Override
 	public List<Study> getStudies() {
 		return getModels(Study.class);
+	}
+
+	/**
+	 * no use yet
+	 */
+	@Override
+	public void updateStatus(int studyId, Status status) {
+		String sql = "update stu from Study stu " + "set status = :status " + " where stu.id = :id";
+		getCurrentSession().createQuery(sql).setParameter("id", studyId).setParameter("status", status).executeUpdate();
 	}
 
 }

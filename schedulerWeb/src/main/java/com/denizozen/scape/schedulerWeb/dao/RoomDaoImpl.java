@@ -2,10 +2,13 @@ package com.denizozen.scape.schedulerWeb.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.denizozen.scape.schedulerWeb.model.Room;
 /**
  * @author deniz.ozen
  */
+@Repository
 public class RoomDaoImpl extends BaseDao implements RoomDao{
 
 	@Override

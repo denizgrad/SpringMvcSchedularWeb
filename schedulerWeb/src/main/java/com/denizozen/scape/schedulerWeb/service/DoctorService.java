@@ -13,7 +13,7 @@ public interface DoctorService {
 	 * @param id
 	 * @return
 	 * @throws NoResultException
-	 *             if member not exists with id
+	 *             if doctor not exists with id
 	 */
 	public Doctor getDoctor(int id);
 

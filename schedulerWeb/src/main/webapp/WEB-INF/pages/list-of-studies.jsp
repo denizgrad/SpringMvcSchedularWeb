@@ -11,11 +11,12 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th width="10%">id</th>
-				<th width="70%">name</th>
-				<th width="70%">patient name</th>
-				<th width="70%">count of doctor</th>
-				<th width="20%">actions</th>
+				<th width="10%"><spring:message code="id"></spring:message></th>
+				<th width="20%"><spring:message code="name"></spring:message></th>
+				<th width="20%"><spring:message code="patientName"></spring:message></th>
+				<th width="20%"><spring:message code="doctorCount"></spring:message></th>
+				<th width="20%"><spring:message code="status"></spring:message></th>
+				<th width="20%"><spring:message code="actions"></spring:message></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,9 +26,10 @@
 					<td>${study.name}</td>
 					<td>${study.patient.name}</td>
 					<td>${study.doctorCount}</td>
+					<td>${study.status}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/study/edit/${study.id}.html"><spring:message code="edit"></spring:message></a><br /> 
-						<a href="${pageContext.request.contextPath}/study/delete/${study.id}.html"><spring:message code="delete"></spring:message></a><br />
+						<a href="${pageContext.request.contextPath}/study/edit/${study.id}"><spring:message code="edit"></spring:message></a><br /> 
+						<a href="${pageContext.request.contextPath}/study/delete/${study.id}"><spring:message code="delete"></spring:message></a><br />
 					</td>
 				</tr>
 			</c:forEach>

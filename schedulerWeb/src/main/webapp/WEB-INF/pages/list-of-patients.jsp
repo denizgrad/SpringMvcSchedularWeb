@@ -11,17 +11,21 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th width="10%">id</th>
-				<th width="70%">name</th>
+				<th width="10%"><spring:message code="id"></spring:message></th>
+				<th width="70%"><spring:message code="name"></spring:message></th>
+				<th width="30%"><spring:message code="dayOfBirth"></spring:message></th>
+				<th width="20%"><spring:message code="sex"></spring:message></th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="study" items="${patients}">
+			<c:forEach var="patient" items="${patients}">
 				<tr>
-					<td>${study.id}</td>
-					<td>${study.name}</td>
+					<td>${patient.id}</td>
+					<td>${patient.name}</td>
+					<td>${patient.dayOfBirth}</td>
+					<td>${patient.sex}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/patient/delete/${patient.id}.html"><spring:message code="delete"></spring:message></a><br />
+						<a href="${pageContext.request.contextPath}/patient/delete/${patient.id}"><spring:message code="delete"></spring:message></a><br />
 					</td>
 				</tr>
 			</c:forEach>

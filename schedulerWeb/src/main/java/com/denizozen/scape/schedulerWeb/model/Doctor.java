@@ -1,7 +1,9 @@
 package com.denizozen.scape.schedulerWeb.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -31,6 +33,9 @@ public class Doctor extends AModel{
 	}
 
 	public Set<Study> getStudies() {
+		if(studies == null) {
+			studies = new HashSet<Study>();
+		}
 		return studies;
 	}
 

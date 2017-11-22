@@ -16,7 +16,7 @@ public interface PatientService {
 	 * @param id
 	 * @return
 	 * @throws NoResultException
-	 *             if member not exists with id
+	 *             if patient not exists with id
 	 */
 	public Patient getPatient(int id);
 

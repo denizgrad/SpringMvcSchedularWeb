@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.denizozen.scape.schedulerWeb.constant.Sex;
+import com.denizozen.scape.schedulerWeb.constant.Status;
 import com.denizozen.scape.schedulerWeb.model.Patient;
 import com.denizozen.scape.schedulerWeb.service.PatientService;
 import com.denizozen.scape.schedulerWeb.utility.Action;
 import com.denizozen.scape.schedulerWeb.utility.PatientHasStudyException;
+import com.denizozen.scape.schedulerWeb.utility.SexEnumConverter;
+import com.denizozen.scape.schedulerWeb.utility.StatusEnumConverter;
 
 @Controller
 @RequestMapping(value="/patient")
@@ -33,13 +36,14 @@ public class PatientController extends AController{
 	
 	@Override
 	protected Action[] createHomeActions() {
-		Action [] actions = new Action[1];
-		actions[0] = new Action("/patient/add", getMessage("add.member"));
+		Action[] actions = new Action [2];
+		actions[0] = new Action("/patient/add", getMessage("add.patient"));
+		actions[1] = new Action("/patient/list", getMessage("list.patient"));
 		return actions;
 	}
 	
 	@GetMapping ("/add")
-	public String addStudyPage(ModelMap modelMap) {
+	public String addPatientPage(ModelMap modelMap) {
 		addPageAttributesOfNew(modelMap);
 		modelMap.addAttribute("patient", Patient.EMPTY);
 		addSexListToModel(modelMap);
@@ -48,7 +52,7 @@ public class PatientController extends AController{
 	
 
 	@PostMapping (value="/add")
-	public String addingStudy(@Valid @ModelAttribute Patient patient, BindingResult bindingResult,
+	public String addingPatient(@Valid @ModelAttribute Patient patient, BindingResult bindingResult,
 			ModelMap modelMap) {
 		addPageAttributesOfNew(modelMap);
 
@@ -59,8 +63,9 @@ public class PatientController extends AController{
 		patientService.addPatient(patient);
 		String message = getMessage("msg.successful.add", getMessage("study"));
 		modelMap.addAttribute("message", message);
-		modelMap.addAttribute("patient", patient);
-		return PATIENT_ADD_FORM;
+		modelMap.addAttribute("patients", patientService.getPatients());
+		addSexListToModel(modelMap);
+		return PATIENT_LIST;
 	}
 	
 	@RequestMapping(value="/list")
@@ -70,7 +75,7 @@ public class PatientController extends AController{
 	}
 	
 	@GetMapping(value="/delete/{id}")
-	public String deleteOrganization(@PathVariable Integer id, ModelMap modelMap) {
+	public String deletePatient(@PathVariable Integer id, ModelMap modelMap) {
 		addHomeActions(modelMap);
 		String message;
 		boolean success;
@@ -94,7 +99,13 @@ public class PatientController extends AController{
 	private void addSexListToModel(ModelMap modelMap) {
 		modelMap.addAttribute("sexList", Sex.values());
 	}
-	
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+	    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+	    dateFormat2.setLenient(true);
+	    webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat2, true));
+	    webDataBinder.registerCustomEditor(Sex.class, new SexEnumConverter());
+	}
 
 
 }

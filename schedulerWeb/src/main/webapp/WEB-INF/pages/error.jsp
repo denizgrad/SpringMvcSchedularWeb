@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags"%>
 
-<custom:layout title="List of members">
+<custom:layout title="List">
 
 	<div>
 		An error has occured

@@ -1,11 +1,14 @@
 package com.denizozen.scape.schedulerWeb.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -43,11 +46,10 @@ public class Study extends AModel{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date endTime;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Status status;
 	
 	@OneToOne
-	@NotNull
 	private Patient patient;
 	
 	@Transient
@@ -55,7 +57,6 @@ public class Study extends AModel{
 	private String patientId;
 	
 	@OneToOne
-	@NotNull
 	private Room room;
 	
 	@Transient
@@ -121,14 +122,20 @@ public class Study extends AModel{
 	}
 
 	public Set<Doctor> getDoctors() {
+		if(doctors==null) {
+			doctors = new HashSet<Doctor>(); 
+		}
 		return doctors;
 	}
 
-	public void setTeams(Set<Doctor> doctors) {
+	public void setDoctors(Set<Doctor> doctors) {
 		this.doctors= doctors;
 	}
 
 	public List<String> getDoctorIds() {
+		if(doctorIds == null) {
+			doctorIds = new ArrayList<String>();
+		}
 		return doctorIds;
 	}
 
@@ -142,10 +149,6 @@ public class Study extends AModel{
 
 	public void setPatientId(String patientId) {
 		this.patientId = patientId;
-	}
-
-	public void setDoctors(Set<Doctor> doctors) {
-		this.doctors = doctors;
 	}
 
 	public int getDoctorCount() {

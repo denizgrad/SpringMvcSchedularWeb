@@ -20,11 +20,16 @@ public class RootController extends AController {
 		return mainPage();
 	}
 
+	/**
+	 * links to be shown
+	 */
 	@Override
 	protected Action[] createHomeActions() {
-		Action[] actions = new Action [2];
+		Action[] actions = new Action [4];
 		actions[0] = new Action("/study/add", getMessage("add.study"));
 		actions[1] = new Action("/patient/add", getMessage("add.patient"));
+		actions[2] = new Action("/study/list", getMessage("list.study"));
+		actions[3] = new Action("/patient/list", getMessage("list.patient"));
 		return actions;
 	}
 }

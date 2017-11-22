@@ -3,11 +3,13 @@ package com.denizozen.scape.schedulerWeb.dao;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * @author deniz.ozen
  */
 import com.denizozen.scape.schedulerWeb.model.Patient;
-
+@Repository
 public class PatientDaoImpl  extends BaseDao implements PatientDao{
 
 	@Override

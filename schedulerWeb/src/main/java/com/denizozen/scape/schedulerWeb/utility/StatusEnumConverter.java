@@ -2,13 +2,13 @@ package com.denizozen.scape.schedulerWeb.utility;
 
 import java.beans.PropertyEditorSupport;
 
-import com.denizozen.scape.schedulerWeb.constant.Sex;
+import com.denizozen.scape.schedulerWeb.constant.Status;
 
 public class StatusEnumConverter extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
-        Sex sex = Sex.getByShortValue((text));
+    	Status sex = Status.getByShortValue((text));
         setValue(sex);
     }
 }
