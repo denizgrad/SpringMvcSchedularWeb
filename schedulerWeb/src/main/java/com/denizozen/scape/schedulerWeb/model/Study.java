@@ -31,6 +31,18 @@ import com.denizozen.scape.schedulerWeb.constant.Status;
 public class Study extends AModel{
 	
 	public static final Object EMPTY = new Study();
+	
+	public Study() {
+		super();
+	}
+
+	public Study(String name ,String description, Date startDate) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.startTime = startDate;
+	}
+
 	@NotNull
 	@Size (min=5, max=250)
 	private String name;
@@ -40,6 +52,7 @@ public class Study extends AModel{
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
 	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
 	private Date startTime;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
@@ -53,21 +66,18 @@ public class Study extends AModel{
 	private Patient patient;
 	
 	@Transient
-	@NotNull
 	private String patientId;
 	
 	@OneToOne
 	private Room room;
 	
 	@Transient
-	@NotNull
 	private String roomId;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	private Set<Doctor> doctors;
 	
 	@Transient
-	@NotNull
 	private List<String> doctorIds;
 
 	@Formula("(select count(*) from studies_doctors sd where sd.studies_id = id)")

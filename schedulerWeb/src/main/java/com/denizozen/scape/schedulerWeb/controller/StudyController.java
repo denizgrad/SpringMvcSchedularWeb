@@ -82,6 +82,7 @@ public class StudyController extends AController{
 		String message = getMessage("msg.successful.add", getMessage("study"));
 		modelMap.addAttribute("message", message);
 		modelMap.addAttribute("studies", studyService.getStudies());
+		modelMap.addAttribute("study", study);
 		return STUDY_LIST;
 	}
 	

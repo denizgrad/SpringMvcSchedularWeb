@@ -16,6 +16,11 @@ public class RoomServiceImpl implements RoomService{
 	RoomDao roomDao;
 	
 	@Override
+	public void addRoom(Room room) {
+		roomDao.addRoom(room);
+	}
+	
+	@Override
 	public Room getRoom(int id) {
 		return roomDao.getRoom(id);
 	}

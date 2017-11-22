@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
  * @author deniz.ozen
  */
 import com.denizozen.scape.schedulerWeb.model.Patient;
+import com.denizozen.scape.schedulerWeb.model.Study;
 @Repository
 public class PatientDaoImpl  extends BaseDao implements PatientDao{
 
@@ -40,5 +41,12 @@ public class PatientDaoImpl  extends BaseDao implements PatientDao{
 				.setParameter("id", patientId)
 				.getSingleResult();
 		return Integer.parseInt(Objects.toString(count)) > 0;
+	}
+
+	@Override
+	public void updatePatient(Patient patient) {
+		Patient patToUpdate = getPatient(patient.getId());
+		patToUpdate.setName(patient.getName());
+		updateModel(patToUpdate);
 	}
 }

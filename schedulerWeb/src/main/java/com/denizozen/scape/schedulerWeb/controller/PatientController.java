@@ -64,6 +64,7 @@ public class PatientController extends AController{
 		String message = getMessage("msg.successful.add", getMessage("study"));
 		modelMap.addAttribute("message", message);
 		modelMap.addAttribute("patients", patientService.getPatients());
+		modelMap.addAttribute("patient", Patient.EMPTY);
 		addSexListToModel(modelMap);
 		return PATIENT_LIST;
 	}

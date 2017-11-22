@@ -16,6 +16,10 @@ import javax.persistence.Table;
 public class Room extends AModel{
 	private String name;
 	
+	public Room() {
+		super();
+	}
+
 	@OneToMany(mappedBy = "room")
 	private Set<Study> studies;
 
@@ -26,5 +30,11 @@ public class Room extends AModel{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Room(String name) {
+		super();
+		this.name = name;
+	}
+	
 	
 }

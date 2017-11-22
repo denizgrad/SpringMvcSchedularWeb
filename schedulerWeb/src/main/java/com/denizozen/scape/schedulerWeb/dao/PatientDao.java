@@ -12,6 +12,7 @@ import com.denizozen.scape.schedulerWeb.model.Patient;
 public interface PatientDao {
 
 	void addPatient(Patient patient);
+	void updatePatient(Patient patient);
 	Patient getPatient(int id);
 	void deletePatient(int id);
 	List<Patient> getPatients();

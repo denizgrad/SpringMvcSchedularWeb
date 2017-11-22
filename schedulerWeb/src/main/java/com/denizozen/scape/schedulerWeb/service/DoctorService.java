@@ -8,6 +8,7 @@ import com.denizozen.scape.schedulerWeb.model.Doctor;
 
 public interface DoctorService {
 
+	public void addDoctor(Doctor doctor);
 	/**
 	 * 
 	 * @param id

@@ -26,4 +26,9 @@ public class DoctorServiceImpl implements DoctorService {
 		return doctorDao.getDoctors();
 	}
 
+	@Override
+	public void addDoctor(Doctor doctor) {
+		doctorDao.addDoctor(doctor);
+	}
+
 }

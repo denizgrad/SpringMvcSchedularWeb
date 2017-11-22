@@ -32,6 +32,7 @@ public class StudyDaoImpl extends BaseDao implements StudyDao {
 		stuToUpdate.setDescription(study.getDescription());
 		stuToUpdate.setDoctors(study.getDoctors());
 		stuToUpdate.setRoom(study.getRoom());
+		stuToUpdate.setPatient(study.getPatient());
 		stuToUpdate.setStatus(study.getStatus());
 		stuToUpdate.setDoctorIds(study.getDoctorIds());
 		stuToUpdate.setRoomId(study.getRoomId());

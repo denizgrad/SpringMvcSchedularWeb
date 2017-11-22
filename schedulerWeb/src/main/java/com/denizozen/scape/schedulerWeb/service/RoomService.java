@@ -20,4 +20,6 @@ public interface RoomService {
 	public Room getRoom(int id);
 
 	public List<Room> getRooms();
+
+	void addRoom(Room room);
 }

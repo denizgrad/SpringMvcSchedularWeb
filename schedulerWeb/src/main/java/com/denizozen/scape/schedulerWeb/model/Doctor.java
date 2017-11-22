@@ -19,6 +19,15 @@ import javax.persistence.Table;
 @Table(name="doctors")
 public class Doctor extends AModel{
 
+	public Doctor() {
+		super();
+	}
+
+	public Doctor(String name) {
+		super();
+		this.name = name;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "doctors")
 	private Set<Study> studies;
 	
